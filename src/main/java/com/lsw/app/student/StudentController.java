@@ -23,8 +23,12 @@ public class StudentController {
 		return "student/list";
 	}
 	
-	
-	
+	@RequestMapping("/weather/detail")
+	public String getDetail() {
+		
+		
+		return "weather/detail";
+	}
 	
 	
 	
