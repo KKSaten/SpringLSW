@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	Hello world! ê²½í
+	Hello world! Kwan
 	Lsw™˜
 </h1>
 
