@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StudentDTO {
 	
-	private int num;
+	private long num;
 	private String name;
 	private int kor;
 	private int eng;
@@ -37,10 +37,10 @@ public class StudentDTO {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-	public int getNum() {
+	public long getNum() {
 		return num;
 	}
-	public void setNum(int num) {
+	public void setNum(long num) {
 		this.num = num;
 	}
 	public String getName() {

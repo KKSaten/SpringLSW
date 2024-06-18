@@ -30,7 +30,7 @@ public class StudentController {
 		
 		String num = request.getParameter("num");
 		StudentDTO studentDTO = new StudentDTO();
-		studentDTO.setNum(Integer.parseInt(num));
+		studentDTO.setNum(Long.parseLong(num));
 		studentDTO = studentService.getDetail(studentDTO);
 
 		request.setAttribute("std", studentDTO);
@@ -48,23 +48,24 @@ public class StudentController {
 	@RequestMapping(value = "/student/add", method = RequestMethod.POST)
 	public String add2(HttpServletRequest request) {
 		
-		System.out.println("학생 등록 데이터를 꺼내야 함");
-		StudentDTO student = new StudentDTO();
+//		long num = Long.parseLong(request.getParameter("num"));
 		String name = request.getParameter("name");
-		int num = Integer.parseInt(request.getParameter("num"));
+		int kor = Integer.parseInt(request.getParameter("kor"));
+		int eng = Integer.parseInt(request.getParameter("eng"));
+		int math = Integer.parseInt(request.getParameter("math"));
+		int total = Integer.parseInt(request.getParameter("total"));
 		double avg = Double.parseDouble(request.getParameter("avg"));
-		student.setName(name);
-		student.setNum(num);
-		student.setAvg(avg);
+				
+		StudentDTO studentDTO = new StudentDTO();
+		studentDTO.setName(name);
+		studentDTO.setKor(kor);
+		studentDTO.setEng(eng);
+		studentDTO.setMath(math);
+		studentDTO.setTotal(total);
+		studentDTO.setAvg(avg);
+		studentService.add(studentDTO);
 		
-		System.out.println(request.getParameter("ch"));
-		System.out.println(request.getParameter("mobile"));
-		String[] sports = request.getParameterValues("sports");
 		
-		for(String s: sports) {
-			System.out.println(s);
-		}
-			
 		return "redirect:/student/list";
 	}
 	

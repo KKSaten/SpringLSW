@@ -40,6 +40,21 @@ public class StudentService {
 		return studentDTO;
 	}
 	
+	
+	
+	//add
+	public void add(StudentDTO studentDTO) {
+		try {
+			studentDAO.add(studentDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}//add() 끝
+	
+	
+	
 	//delete
 	public List<StudentDTO> delete(StudentDTO studentDTO) {
 		List<StudentDTO> ar = null;
@@ -51,7 +66,6 @@ public class StudentService {
 		}
 		return ar;
 	}
-	
 	
 	
 	

@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,35 +18,51 @@ public class StudentDAO {
 	
 	public List<StudentDTO> getStudents() throws Exception{
 		
-		File file = new File("C:\\study\\student.txt");
+		File file = new File("C:\\study", "student.txt");
+		FileReader fr;
 		ArrayList<StudentDTO> ar = new ArrayList<StudentDTO>();
-		FileReader fr = new FileReader(file);
-		BufferedReader br = new BufferedReader(fr);
 		
-		while(true) {
-			String s = br.readLine();
+		try {
+			fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
 			
-			if(s == null) {
-				break;
-			}
+			while(true) {
+				String s = br.readLine();
+				
+				if (s == null) {
+					break;
+				}
+				if (s.isEmpty()) {
+					
+				}
+				
+				s = s.replace(",", "-");
+				StringTokenizer st = new StringTokenizer(s, "-");
+				while(st.hasMoreTokens()) {
+					StudentDTO studentDTO = new StudentDTO();
+					studentDTO.setNum(Long.parseLong(st.nextToken().trim()));
+					studentDTO.setName(st.nextToken().trim());
+					studentDTO.setKor(Integer.parseInt(st.nextToken().trim()));
+					studentDTO.setEng(Integer.parseInt(st.nextToken().trim()));
+					studentDTO.setMath(Integer.parseInt(st.nextToken().trim()));
+					studentDTO.setTotal(Integer.parseInt(st.nextToken().trim()));
+					studentDTO.setAvg(Double.parseDouble(st.nextToken().trim()));
+					ar.add(studentDTO);
+				}//while문 끝
+				
+			}//while문 끝
 			
-			StudentDTO studentDTO = new StudentDTO();
-			String[] sp = s.split(",");
-			studentDTO.setNum(Integer.parseInt(sp[0].trim()));
-			studentDTO.setName(sp[1].trim());
-			studentDTO.setKor(Integer.parseInt(sp[2].trim()));
-			studentDTO.setEng(Integer.parseInt(sp[3].trim()));
-			studentDTO.setMath(Integer.parseInt(sp[4].trim()));
-			studentDTO.setTotal(Integer.parseInt(sp[5].trim()));
-			studentDTO.setAvg(Double.parseDouble(sp[6].trim()));
-			ar.add(studentDTO);	
-		}//while문 끝
+			br.close();
+			fr.close();
+				
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		br.close();
-		fr.close();
-		
-		return ar;	
-	} //getStudent() 끝
+		return ar;
+			
+	} //getStudents() 끝
 
 
 	public StudentDTO getDetail(StudentDTO studentDTO) throws Exception {
@@ -64,7 +82,39 @@ public class StudentDAO {
 	}
 	
 	
+	//add
+	public void add(StudentDTO studentDTO) throws Exception{
+		
+		List<StudentDTO> ar = this.getStudents();
+		
+		//도시명-기온-상태-습도		
+		StringBuffer sb = new StringBuffer();
+		Calendar ca = Calendar.getInstance();
+		sb.append(ca.getTimeInMillis());
+		sb.append("-");
+		sb.append(studentDTO.getName());
+		sb.append("-");
+		sb.append(studentDTO.getKor());
+		sb.append("-");
+		sb.append(studentDTO.getEng());
+		sb.append("-");
+		sb.append(studentDTO.getMath());
+		sb.append("-");
+		sb.append(studentDTO.getTotal());
+		sb.append("-");
+		sb.append(studentDTO.getAvg());
+		
+		File file = new File("C:\\study", "student.txt");
+		FileWriter fw = new FileWriter(file, true);
+		fw.write(sb+"\r\n");
+		fw.flush();
+		
+		fw.close();
+	}
 	
+	
+	
+	//delete
 	public void delete(StudentDTO studentDTO) throws Exception{
 		
 		List<StudentDTO> list = this.getStudents();

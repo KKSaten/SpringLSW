@@ -13,36 +13,34 @@
 	
 		<div>
 			<label for="name">이름</label>
-			<input type="text" id="name" name="name">
+			<input type="text" name="name">
+		</div>
+		<div>
+			<label for="kor">국어</label>
+			<input type="text" name="kor">
+		</div>
+		<div>
+			<label for="eng">영어</label>
+			<input type="text" name="eng">
+		</div>
+		<div>
+			<label for="math">수학</label>
+			<input type="text" name="math">
+		</div>
+		<div>
+			<label for="total">총합</label>
+			<input type="text" name="total">
 		</div>
 		<div>
 			<label for="avg">평균</label>
-			<input type="text" id="avg" name="avg">
+			<input type="text" name="avg">
 		</div>
-		<div>
-			<label></label>
-			<input type="radio" name="ch" value="girl"> <!-- 얘는 입력이 아니라서 submit으로 value값이 넘어가지 않음. 이렇게 직접 적어줘야한다 -->
-			<input type="radio" name="ch" value="boy">
-		</div>
-		<div>
-			<select name="mobile">
-				<option value="SKT">SKT</option>
-				<option value="KT">KT</option>
-				<option value="LG">LG</option>
-			</select>
-		</div>
-		<div>
-			<input type="checkbox" name="sports" value="soccer">
-			<input type="checkbox" name="sports" value="baseball">
-			<input type="checkbox" name="sports" value="basketball">
-		</div>
-		<div>
-			<textarea rows"" cols="" name="contents"></textarea>
-		</div>
-		<div>
-			<input type="submit" value="등록">
-			<button type="submit">작성</button>
-		</div>
+
+		
+		
+		<input type="submit" value="등록">
+		
+		
 	</form>
 
 </body>
