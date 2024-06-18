@@ -7,7 +7,7 @@
 <body>
 <h1>
 	Hello world! Kwan
-	Lsw™˜
+	Lsw
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
